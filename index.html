@@ -11,15 +11,34 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
+html,
 body{
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-background:linear-gradient(135deg,#F7F5FF 0%,#EEE9FF 35%,#F8F6FF 70%,#E7E1FF 100%);
-font-family:"Itim",cursive;
-position:relative;
+    min-height:100%;
+}
+
+body{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    background:linear-gradient(
+        135deg,
+        #F7F5FF 0%,
+        #EEE9FF 35%,
+        #F8F6FF 70%,
+        #E7E1FF 100%
+    );
+
+    font-family:"Itim",cursive;
+
+    position:relative;
+
 }
 body:before{
 content:"";
