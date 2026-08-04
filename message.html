@@ -1,136 +1,554 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Leave Me a Message</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,
 body{
+width:100%;
+min-height:100%;
+}
+
+body{
+
+margin:0;
+
 font-family:"Itim",cursive;
-height:100vh;
+
+background:linear-gradient(
+135deg,
+#F7F5FF,
+#EEE9FF,
+#F8F6FF,
+#E7E1FF
+);
+
+min-height:100vh;
+
 display:flex;
+
 justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);
-overflow:hidden;
+
+align-items:flex-start;
+
+padding:20px;
+
+overflow-x:hidden;
+overflow-y:auto;
+
 position:relative;
+
 }
-.blur,.blur2{position:absolute;border-radius:50%;filter:blur(180px);opacity:.22}
-.blur{width:520px;height:520px;background:#A78BFA;left:-140px;top:-140px}
-.blur2{width:480px;height:480px;background:#C4B5FD;right:-140px;bottom:-140px}
+
+.blur,
+.blur2{
+
+position:fixed;
+
+border-radius:50%;
+
+filter:blur(180px);
+
+opacity:.22;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+.blur{
+
+width:520px;
+height:520px;
+
+background:#A78BFA;
+
+left:-140px;
+top:-140px;
+
+}
+
+.blur2{
+
+width:480px;
+height:480px;
+
+background:#C4B5FD;
+
+right:-140px;
+bottom:-140px;
+
+}
+
 .card{
-position:relative;z-index:2;
-width:min(92vw,560px);
-padding:40px;
+
+position:relative;
+
+z-index:5;
+
+width:100%;
+max-width:560px;
+
+margin:20px auto;
+
+padding:38px;
+
 background:rgba(255,255,255,.58);
+
 backdrop-filter:blur(18px);
+
 border-radius:30px;
+
 border:1px solid rgba(255,255,255,.7);
+
 box-shadow:0 20px 60px rgba(98,84,220,.15);
+
 animation:fade .7s ease;
+
 }
-@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-h1{text-align:center;color:#5E67D9;font-size:42px}
-.sub{text-align:center;color:#8A86A8;font-size:20px;margin:10px 0 28px;line-height:1.5}
-label{display:block;margin:16px 0 8px;color:#6E68A0;font-size:20px}
-input,textarea{
-width:100%;
-border:none;
-outline:none;
-padding:16px;
-border-radius:18px;
-font-family:"Itim",cursive;
-font-size:20px;
-background:#fff;
-box-shadow:inset 0 0 0 2px #E5DEFF;
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(18px);
+
 }
-textarea{min-height:170px;resize:vertical}
-button{
-width:100%;
-margin-top:24px;
-padding:16px;
-border:none;
-border-radius:999px;
-background:#F6B5CC;
-color:#5E67D9;
-font-family:"Itim",cursive;
-font-size:24px;
-cursor:pointer;
-transition:.25s;
+
+to{
+
+opacity:1;
+transform:none;
+
 }
-button:hover{transform:translateY(-2px)}
-#success{
-display:none;
+
+}
+
+h1{
+
 text-align:center;
-padding:30px 10px;
+
+font-size:40px;
+
+color:#5E67D9;
+
 }
-#success h2{color:#5E67D9;font-size:38px}
-#success p{margin-top:12px;color:#7B77A0;font-size:22px;line-height:1.6}
+
+.sub{
+
+text-align:center;
+
+margin:10px 0 26px;
+
+color:#8A86A8;
+
+font-size:20px;
+
+line-height:1.6;
+
+}
+
+label{
+
+display:block;
+
+margin:18px 0 8px;
+
+color:#6E68A0;
+
+font-size:20px;
+
+}
+
+input,
+textarea{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+outline:none;
+
+border-radius:18px;
+
+font-family:"Itim",cursive;
+
+font-size:20px;
+
+background:white;
+
+box-shadow:inset 0 0 0 2px #E5DEFF;
+
+transition:.25s;
+
+}
+
+input:focus,
+textarea:focus{
+
+box-shadow:
+inset 0 0 0 2px #8B7DFF,
+0 0 0 4px rgba(139,125,255,.12);
+
+}
+
+textarea{
+
+min-height:170px;
+
+resize:vertical;
+
+}
+
+button{
+
+width:100%;
+
+margin-top:26px;
+
+padding:16px;
+
+border:none;
+
+border-radius:999px;
+
+background:#F6B5CC;
+
+color:#5E67D9;
+
+font-family:"Itim",cursive;
+
+font-size:24px;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+background:#F3A8C2;
+
+}
+
+button:disabled{
+
+opacity:.7;
+
+cursor:not-allowed;
+
+}
+
+#success{
+
+display:none;
+
+text-align:center;
+
+padding:30px 10px;
+
+}
+
+#success h2{
+
+font-size:36px;
+
+color:#5E67D9;
+
+}
+
+#success p{
+
+margin-top:14px;
+
+font-size:21px;
+
+line-height:1.7;
+
+color:#7B77A0;
+
+}
+
+.back{
+
+display:block;
+
+width:max-content;
+
+margin:28px auto 0;
+
+padding:13px 28px;
+
+background:#8B7DFF;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:999px;
+
+font-size:20px;
+
+transition:.25s;
+
+}
+
+.back:hover{
+
+background:#7568F2;
+
+transform:translateY(-2px);
+
+}
+
+@media(max-width:768px){
+
+body{
+
+padding:16px;
+
+}
+
+.card{
+
+padding:24px 18px;
+
+border-radius:22px;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+.sub{
+
+font-size:18px;
+
+}
+
+label{
+
+font-size:18px;
+
+}
+
+input,
+textarea{
+
+font-size:18px;
+
+padding:14px;
+
+}
+
+textarea{
+
+min-height:140px;
+
+}
+
+button{
+
+font-size:20px;
+
+padding:14px;
+
+}
+
+#success h2{
+
+font-size:30px;
+
+}
+
+#success p{
+
+font-size:18px;
+
+}
+
+.back{
+
+width:100%;
+
+max-width:260px;
+
+text-align:center;
+
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
-<div class="blur"></div><div class="blur2"></div>
+
+<div class="blur"></div>
+<div class="blur2"></div>
 
 <div class="card">
 
 <div id="formBox">
+
 <h1>💌 มีอะไรอยากบอกพี่มั้ยคะ ?</h1>
-<div class="sub">มุพิมพ์ๆมาตรงนี้เลยค่ะ</div>
+
+<div class="sub">
+
+มุพิมพ์มาได้เลยนะ เดี๋ยวข้อความจะบินมาหาพี่เอง 🤍
+
+</div>
 
 <form id="msgForm">
-<label>ผู้ส่ง : </label>
-<input type="text" name="name" >
 
-<label>อยากบอกว่า : </label>
-<textarea name="message" ></textarea>
+<label>ผู้ส่ง</label>
 
-<button type="submit" id="sendBtn">♡ Send ♡</button>
+<input
+type="text"
+name="name"
+placeholder="เช่น หมวยอุ้ด 🤍">
+
+<label>อยากบอกว่า</label>
+
+<textarea
+name="message"
+placeholder="พิมพ์อะไรก็ได้เลย พี่รออ่านอยู่น้า ☺️"></textarea>
+
+<button
+type="submit"
+id="sendBtn">
+
+♡ Send ♡
+
+</button>
+
 </form>
+
+<a class="back" href="menu.html">
+
+🏠 กลับหน้าเมนู
+
+</a>
+
 </div>
 
 <div id="success">
-<h2>ขอบคุณค่ะที่รัก 🤍</h2>
-<p>ส่งเรียบร้อยแนะ รออ่านน้า แอบเขิน แอบตื่นเต้น 🌷</p>
+
+<h2>
+
+ขอบคุณนะคะที่รัก 🤍
+
+</h2>
+
+<p>
+
+ข้อความส่งถึงพี่เรียบร้อยแล้ววว 🌷<br>
+
+เดี๋ยวพี่แอบไปอ่านนะ เขินเลย ☺️
+
+</p>
+
+<a class="back" href="menu.html">
+
+🏠 กลับหน้าเมนู
+
+</a>
+
 </div>
 
 </div>
 
 <script>
-const form=document.getElementById("msgForm");
-const btn=document.getElementById("sendBtn");
 
-form.addEventListener("submit",async(e)=>{
- e.preventDefault();
- btn.disabled=true;
- btn.textContent="Sending...";
+const form = document.getElementById("msgForm");
+const btn = document.getElementById("sendBtn");
 
- const data=new FormData(form);
+form.addEventListener("submit", async (e)=>{
 
- try{
-   const res=await fetch("https://formspree.io/f/xyeggddz",{
-      method:"POST",
-      body:data,
-      headers:{'Accept':'application/json'}
-   });
+    e.preventDefault();
 
-   if(res.ok){
-      document.getElementById("formBox").style.display="none";
-      document.getElementById("success").style.display="block";
-   }else{
-      alert("ส่งข้อความไม่สำเร็จ ลองอีกครั้งนะ 🤍");
-      btn.disabled=false;
-      btn.textContent="♡ Send ♡";
-   }
- }catch(err){
-    alert("ไม่สามารถเชื่อมต่อได้");
-    btn.disabled=false;
-    btn.textContent="♡ Send ♡";
- }
+    btn.disabled = true;
+
+    btn.textContent = "กำลังส่ง... 💌";
+
+    const data = new FormData(form);
+
+    try{
+
+        const res = await fetch(
+            "https://formspree.io/f/xyeggddz",
+            {
+                method:"POST",
+                body:data,
+                headers:{
+                    "Accept":"application/json"
+                }
+            }
+        );
+
+        if(res.ok){
+
+            form.reset();
+
+            document.getElementById("formBox").style.display="none";
+
+            document.getElementById("success").style.display="block";
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        }else{
+
+            alert("ส่งข้อความไม่สำเร็จ ลองอีกครั้งนะ 🤍");
+
+            btn.disabled=false;
+
+            btn.textContent="♡ Send ♡";
+
+        }
+
+    }catch(err){
+
+        alert("เชื่อมต่อไม่สำเร็จ ลองใหม่อีกครั้งนะ 🥺");
+
+        btn.disabled=false;
+
+        btn.textContent="♡ Send ♡";
+
+    }
+
 });
+
 </script>
 
 </body>
