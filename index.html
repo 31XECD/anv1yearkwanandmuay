@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:linear-gradient(135deg,#F7F5FF 0%,#EEE9FF 35%,#F8F6FF 70%,#E7E1FF 100%);
+font-family:"Itim",cursive;
+position:relative;
+}
+body:before{
+content:"";
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at 20% 25%,rgba(255,255,255,.75) 2px,transparent 3px),
+radial-gradient(circle at 75% 30%,rgba(255,255,255,.55) 2px,transparent 3px),
+radial-gradient(circle at 45% 80%,rgba(255,255,255,.65) 2px,transparent 3px);
+pointer-events:none;
+}
+.blur,.blur2{
+position:absolute;
+border-radius:50%;
+filter:blur(180px);
+opacity:.22;
+}
+.blur{
+width:520px;height:520px;
+left:-140px;top:-140px;
+background:#A78BFA;
+}
+.blur2{
+width:480px;height:480px;
+right:-140px;bottom:-140px;
+background:#C4B5FD;
+}
+.wrap{
+position:relative;
+z-index:5;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+.gift{
+width:260px;
+max-width:72vw;
+filter:drop-shadow(0 20px 35px rgba(92,76,214,.15));
+animation:float 3s ease-in-out infinite;
+user-select:none;
+}
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+}
+.title{
+margin-top:18px;
+font-size:25px;
+color:#5E67D9;
+text-align:center;
+}
+.btn{
+display:inline-block;
+
+margin-top:20px;
+padding:13px 42px;
+
+border:none;
+border-radius:999px;
+
+background:#F6B5CC;
+color:#5E67D9;
+
+font-family:"Itim",cursive;
+font-size:20px;
+
+text-decoration:none;
+
+cursor:pointer;
+
+box-shadow:0 12px 25px rgba(246,181,204,.35);
+
+transition:.25s;
+}
+
+.btn:hover{
+
+transform:translateY(-2px) scale(1.03);
+
+background:#F3A8C2;
+
+color:#5E67D9;
+
+text-decoration:none;
+
+}
+</style>
+</head>
+<body>
+
+<div class="blur"></div>
+<div class="blur2"></div>
+
+<div class="wrap">
+<img class="gift" src="https://img2.pic.in.th/giftf7b67beadc073b74.png" alt="Gift Box">
+<div class="title">แฟนค้าบบ พี่มีของขวัญมาให้! 😁</div>
+<a href="lock.html" class="btn">เปิดเลย!</a>
+</div>
+
+</body>
+</html>

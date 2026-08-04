@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Puzzle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Itim",cursive;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);overflow:hidden;position:relative}
+.blur,.blur2{position:absolute;border-radius:50%;filter:blur(180px);opacity:.22}
+.blur{width:520px;height:520px;background:#A78BFA;left:-140px;top:-140px}
+.blur2{width:480px;height:480px;background:#C4B5FD;right:-140px;bottom:-140px}
+.card{position:relative;z-index:2;width:min(95vw,720px);padding:28px;background:rgba(255,255,255,.58);backdrop-filter:blur(18px);border-radius:28px;text-align:center;box-shadow:0 20px 60px rgba(100,80,220,.15)}
+h1{color:#5E67D9;font-size:42px}
+p{color:#7B77A0;margin:10px 0 22px;font-size:20px}
+#board{width:306px;height:306px;margin:0 auto;display:grid;grid-template-columns:repeat(3,102px);grid-template-rows:repeat(3,102px);gap:2px}
+.tile{
+    width:100px;
+    height:100px;
+    border-radius:10px;
+    border:2px solid rgba(255,255,255,.8);
+
+    background-image:url("https://img2.pic.in.th/puzzle.jpg");
+
+    background-size:300px 300px;
+    cursor:grab;
+}
+#message,#next,#menuBtn{display:none;animation:fade .5s ease}
+#message{margin-top:20px;color:#6B5CF5;font-size:28px}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:20px}
+.btn{padding:13px 30px;background:#F6B5CC;color:#5E67D9;text-decoration:none;border-radius:999px;font-size:22px;transition:.25s}
+.btn:hover{transform:translateY(-2px);background:#F3A8C2}
+small{display:block;margin-top:18px;color:#8A86A8}
+</style>
+</head>
+<body>
+<div class="blur"></div><div class="blur2"></div>
+<div class="card">
+<h1>🧩 A Piece of love</h1>
+<p>มาค่ะแฟน หนุกๆ พักเบรค  🤍</p>
+<div id="board"></div>
+
+<div id="message">🎉 เก่งมากไอมุอุ้ด มาหมทีนึง! 🤍</div>
+
+<div class="actions">
+<a id="menuBtn" class="btn" href="menu.html">🏠 กลับหน้าเมนู</a>
+</div>
+
+</div>
+
+<script>
+const board=document.getElementById("board");
+let order=[0,1,2,3,4,5,6,7,8];
+
+function shuffle(){
+ do{order.sort(()=>Math.random()-0.5);}
+ while(order.every((v,i)=>v===i));
+ render();
+}
+
+function render(){
+ board.innerHTML="";
+ order.forEach((piece,index)=>{
+   const d=document.createElement("div");
+   d.className="tile";
+   d.draggable=true;
+   d.dataset.index=index;
+   const x=(piece%3)*-100;
+   const y=Math.floor(piece/3)*-100;
+   d.style.backgroundPosition=`${x}px ${y}px`;
+   d.addEventListener("dragstart",()=>dragIndex=index);
+   d.addEventListener("dragover",e=>e.preventDefault());
+   d.addEventListener("drop",()=>drop(index));
+   board.appendChild(d);
+ });
+}
+
+let dragIndex=null;
+
+function drop(target){
+ [order[dragIndex],order[target]]=[order[target],order[dragIndex]];
+ render();
+ check();
+}
+
+function check(){
+ if(order.every((v,i)=>v===i)){
+   document.getElementById("message").style.display="block";
+   document.getElementById("menuBtn").style.display="inline-block";
+ }
+}
+shuffle();
+</script>
+</body>
+</html>

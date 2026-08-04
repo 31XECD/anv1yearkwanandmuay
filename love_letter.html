@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Letter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:"Itim",cursive;
+background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);
+height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center;position:relative}
+.blur,.blur2{position:absolute;border-radius:50%;filter:blur(180px);opacity:.22}
+.blur{width:520px;height:520px;background:#A78BFA;left:-140px;top:-140px}
+.blur2{width:480px;height:480px;background:#C4B5FD;right:-140px;bottom:-140px}
+.container{position:relative;z-index:2;text-align:center}
+#envelope{
+width:220px;
+cursor:pointer;
+transition:transform .35s,filter .35s,opacity .25s;
+filter:drop-shadow(0 18px 30px rgba(100,80,220,.2));
+}
+#envelope:hover{
+transform:translateY(-8px) scale(1.05);
+filter:drop-shadow(0 24px 40px rgba(100,80,220,.3));
+}
+.tip{margin-top:16px;color:#5E67D9;font-size:22px}
+#letter{
+display:none;
+width:min(92vw,760px);
+max-height:82vh;
+overflow:auto;
+margin:auto;
+padding:36px;
+background:#fffdfb;
+border-radius:24px;
+box-shadow:0 20px 60px rgba(80,70,160,.18);
+text-align:left;
+animation:show .7s ease;
+}
+#letter::-webkit-scrollbar{width:8px}
+#letter::-webkit-scrollbar-thumb{background:#d9cffd;border-radius:10px}
+@keyframes show{
+from{opacity:0;transform:translateY(30px) scale(.96)}
+to{opacity:1;transform:none}
+}
+h1{color:#5E67D9;text-align:center;font-size:36px;margin-bottom:6px}
+.date{text-align:center;color:#8b86a8;margin-bottom:24px;font-size:20px}
+.content{white-space:pre-line;line-height:2;font-size:22px;color:#555}
+.next{
+display:block;
+width:max-content;
+margin:28px auto 0;
+padding:14px 34px;
+border-radius:999px;
+background:#F6B5CC;
+color:#5E67D9;
+text-decoration:none;
+font-size:22px;
+}
+</style>
+</head>
+<body>
+<div class="blur"></div>
+<div class="blur2"></div>
+
+<div class="container" id="cover">
+<img
+    id="envelope"
+    src="https://img1.pic.in.th/images/envelope.png"
+    data-close="https://img1.pic.in.th/images/envelope.png"
+    data-open="https://img2.pic.in.th/envelope-open.png"
+    alt="Letter">
+<div class="tip">จิ้มๆ เปิด 💌</div>
+</div>
+
+<div id="letter">
+<h1>Anniversary 1 year 🤍🌷</h1>
+<div class="date">05.08.69</div>
+
+<div class="content">ครบรอบ 1 ปีแล้วที่เป็นแฟนกัน แต่พี่ว่าเราทั้งคู่รู้สึกเหมือนกัน ความรู้สึกที่ว่าสนิทกันมานานกว่านั้น พี่ชอบนะที่ความสัมพันธ์ของเราสนิทกัน คุยกันได้ทุกเรื่อง มันทำให้รู้สึกปลอดภัย และสบายใจจริงๆ แฟนเป็นทุกอย่างสำหรับพี่ เป็นแฟน เป็นเพื่อน เป็นพี่ เป็นน้อง เพราะบางทีพี่ก็อาจจะเผลอทำตัวไม่น่ารัก แฟนก็บอกก็เตือน รู้สึกตัวเองเด็กไปเลย 5555 แต่พออยู่ด้วยกัน มองดูเธอเวลางอแง เวลาเล่น ก็เห็นความน่าเอ็นดู ความเป็นเด็กน้อยมุอ้วนของหนู น่ารัก น่าหมั่นเขี้ยว 
+    ตั้งแต่มีเธอเข้ามา ชีวิตพี่ดีขึ้นในหลาย ๆ อย่าง อาจจะเป็นเรื่องของจังหวะด้วย แต่แฟนก็มีส่วนนะ แฟนทำให้พี่กล้าตัดสินใจในหลาย ๆ เรื่อง ที่ตัดสินใจแล้วมันดีขึ้นจริง ๆ พี่ภูมิใจในเรื่องพวกนี้เสมอเลย ถ้าในบางเรื่องที่พี่อาจจะยังบกพร่อง ยังไม่พร้อม หรือยังไม่ดีพอ พี่จะพัฒนาและปรับปรุงนะคะ เติบโตและเรียนรู้ไปด้วยกันนะมุ พี่รักหนูมากๆ นะหมวย พี่จะไม่นิยามความสัมพันธ์ของเราว่า "ตลอดไป" แต่พี่อยากอยู่กับหนูไปเรื่อย ๆ นะ ชีวิตที่มีหนูมันมีความสุขมาก ๆ เลย
+
+    รักแฟนนะคะ สุขสันต์วันครบรอบ 1 ปีค่ะที่รัก 🤍🫶🏻</div>
+
+<a class="next" href="menu.html">
+    ← กลับไปหน้าเมนู
+</a>
+</div>
+
+<script>
+const envelope=document.getElementById("envelope");
+
+envelope.addEventListener("mouseenter",()=>{
+  envelope.src=envelope.dataset.open;
+});
+
+envelope.addEventListener("mouseleave",()=>{
+  envelope.src=envelope.dataset.close;
+});
+
+envelope.addEventListener("click",()=>{
+  document.getElementById("cover").style.display="none";
+  document.getElementById("letter").style.display="block";
+});
+</script>
+
+</body>
+</html>

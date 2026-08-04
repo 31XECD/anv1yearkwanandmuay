@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Memories</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: "Itim", cursive;
+
+            background: linear-gradient(
+                135deg,
+                #F7F5FF,
+                #EEE9FF,
+                #F8F6FF,
+                #E7E1FF
+            );
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 24px;
+
+        }
+
+        .card {
+
+            width: min(92vw, 760px);
+
+            background: rgba(255,255,255,.6);
+
+            backdrop-filter: blur(18px);
+
+            padding: 28px;
+
+            border-radius: 28px;
+
+            box-shadow: 0 20px 60px rgba(98,84,220,.15);
+
+            text-align: center;
+
+        }
+
+        h1 {
+
+            color: #5E67D9;
+
+        }
+
+        .sub {
+
+            color: #8A86A8;
+
+            margin: 10px 0 20px;
+
+            font-size: 20px;
+
+        }
+
+        .photo {
+
+            width: 100%;
+
+            aspect-ratio: 4 / 5;
+
+            object-fit: cover;
+
+            border-radius: 20px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,.12);
+
+        }
+
+        h2 {
+
+            margin: 18px 0 8px;
+
+            color: #5E67D9;
+
+        }
+
+        p {
+
+            color: #7B77A0;
+
+            font-size: 18px;
+
+        }
+
+        .nav {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 24px;
+
+        }
+
+        button {
+
+            border: none;
+
+            background: #8B7DFF;
+
+            color: white;
+
+            padding: 12px 24px;
+
+            border-radius: 999px;
+
+            font-family: "Itim", cursive;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            transition: .25s;
+
+        }
+
+        button:hover {
+
+            background: #7366E8;
+
+            transform: translateY(-2px);
+
+        }
+
+        .count {
+
+            margin-top: 18px;
+
+            color: #9B95BA;
+
+        }
+
+        .back {
+
+            display: inline-block;
+
+            margin-top: 22px;
+
+            text-decoration: none;
+
+            background: #F6B5CC;
+
+            padding: 12px 28px;
+
+            border-radius: 999px;
+
+            color: #5E67D9;
+
+        }
+
+        .back:hover {
+
+            background: #F3A8C2;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>📸 Our Memories</h1>
+
+    <div class="sub">
+        ทุกช่วงเวลามีความหมายของมันเสมอ
+    </div>
+
+    <img id="photo" class="photo">
+
+    <h2 id="title"></h2>
+
+    <p id="caption"></p>
+
+    <div class="nav">
+
+        <button onclick="prev()">
+            ← ก่อนหน้า
+        </button>
+
+        <button onclick="next()">
+            ถัดไป →
+        </button>
+
+    </div>
+
+    <div id="count" class="count"></div><br>
+<p> แม้บางรูปจะไม่ได้เอามาลง แต่มีอีกหลายโมเม้นท์มากที่เรามีความสุขด้วยกัน ภูมิใจทุกช่วงเวลาเลยนะ </p>
+    <a class="back" href="menu.html">
+        🏠 กลับหน้าเมนู
+    </a>
+
+</div>
+
+<script>
+
+const totalImages = 28;
+
+const memories = [
+
+{
+    title:"เจอเธอครั้งแรก",
+    caption:"05 กรกฎาคม 2568"
+},
+
+{
+    title:"จับมือเธอครั้งแรกกก",
+    caption:"เขินคู่ ฮ๊อบฟันเหยิน แต่ฟิน อิอิ"
+},
+
+{
+    title:"นอนห้องเธอครั้งแรก",
+    caption:"เธอลงสตอรี่ด้วย เขิน แอบแคปมาเหยิน5555"
+},
+
+{
+    title:"เธอทำขนมปังให้หม่ำก่อนไปทำงานด้วย",
+    caption:"น่ารักมากกสิ่งนี้ ทับใจอะ เขิน"
+},
+
+{
+    title:"กลับมาก็มาหาเธออีก",
+    caption:"ใช้เวลากันไปเรื่อย สองคน แค่เราฟินๆ"
+},
+
+{
+    title:"รู้กัน อิอิ",
+    caption:"ฟิน ติดเธอเหมือนหมา"
+},
+
+{
+    title:"พี่ชอบกอดเธอ",
+    caption:"ชอบกอด ชอบหม ชอบดม ชอบเธอ"
+},
+
+{
+    title:"เธอลงสตอรี่ ผมมันชนะอะครับ",
+    caption:"ฟินกับสิ่งนี้ ชอบ 5555"
+},
+
+{
+    title:"กำลังใจอ่านหนังสือสอบกพ.",
+    caption:"นี่ไง บอกแล้วมีเธอมันดี เธอเป็นสิ่งหนึ่งเหมือนกันที่ช่วยให้สอบได้"
+},
+
+{
+    title:"Photobooth รูปแรก",
+    caption:"รูปใบแรกที่ถ่ายด้วยกัน เกร็งกิเดส แต่น่ารัก ก็ฟินอีกแล้ว"
+},
+
+{
+    title:"เซลฟี่ไปหนึ่ง",
+    caption:"ดูนง ดูหนัง ถ่ายรงถ่ายรูป เดททึฟีลแฟน"
+},
+
+{
+    title:"สิ่งที่ภูมิใจที่สุด 555555",
+    caption:"ล่อเธอมากินหม่าล่าอี้จา เพราะมีไอติมมิ้นช็อก แต่เธอโดนหม่าล่าตกเรียบร้อย 555555"
+},
+
+{
+    title:"คนที่เผลอแล้วโคตรสวย",
+    caption:"ชอบถ่ายรูปแฟนตอนเผลอที่สุดในโลก สวย แต่ทำไมชอบวีน"
+},
+
+
+{
+    title:"เริ่มเลย ปฏิบัติการทำดอกไม้เตรียมขอเธอคบ",
+    caption:"เธอชอบทิวลิป พี่เสกให้เลย เจ็บมือ แสบ ร้อน แต่ยินดี"
+},
+
+
+{
+    title:"ดอกไม้ขอเธอเป็นแฟน",
+    caption:"ภูมิใจอีกแระ สวย คาดหวังมากว่าให้เธอชอบ ไหนจะแผนแอบเอาไปวางที่หออีก5555"
+},
+
+{
+    title:"พาเธอไปเจอเพื่อน",
+    caption:"เธอเข้ากับเพื่อนพี่ได้ดีทุกคนเลย ภูมิใจ มีความสุข"
+},
+
+{
+    title:"พาเธอไปเจอเพื่อน",
+    caption:"เธอเข้ากับเพื่อนพี่ได้ดีทุกคนเลย ภูมิใจ มีความสุข"
+},
+
+{
+    title:"เที่ยวกับเธอ โคตรสนุก",
+    caption:"ชอบใช้เวลาไปเที่ยวกับแฟน สนุก มีความสุขที่สุดแล้ว"
+},
+{
+    title:"เที่ยวกับเธอ โคตรสนุก",
+    caption:"ชอบใช้เวลาไปเที่ยวกับแฟน สนุก มีความสุขที่สุดแล้ว"
+},
+{
+    title:"เที่ยวกับเธอ โคตรสนุก",
+    caption:"ชอบใช้เวลาไปเที่ยวกับแฟน สนุก มีความสุขที่สุดแล้ว"
+},
+{
+    title:"เที่ยวกับเธอ โคตรสนุก",
+    caption:"ชอบใช้เวลาไปเที่ยวกับแฟน สนุก มีความสุขที่สุดแล้ว"
+},
+{
+    title:"เธอมาอยู่บ้านด้วยครั้งแรก",
+    caption:"แล้วที่ไหนมันจะฟินเท่าที่บ้าน5555 พาแฟนเข้าบ้านมานอนค้างด้วยคนแรก เปิดตัว 100%"
+},
+{
+    title:"LDR ทำให้เรากล้าที่จะเดินทางไกล",
+    caption:"นั่งเครื่องเคยแล้ว แต่นั่งเครื่องคนเดียวไม่เคย ได้ลองอะไรใหม่ๆ แต่ก็สนุกดี"
+},
+
+{
+    title:"LDR ทำให้เรากล้าที่จะเดินทางไกล",
+    caption:"ก็ปลายทางมันคุ้มแบบนี้หนิเนอะ"
+},
+{
+    title:"LDR ทำให้เรากล้าที่จะเดินทางไกล",
+    caption:"ก็ปลายทางมันคุ้มแบบนี้หนิเนอะ"
+},
+{
+    title:"LDR ทำให้เรากล้าที่จะเดินทางไกล",
+    caption:"ก็ปลายทางมันคุ้มแบบนี้หนิเนอะ"
+},
+{
+    title:"LDR ทำให้เรากล้าที่จะเดินทางไกล",
+    caption:"ชาบูอุ้ดอร่อยย คิดถึง"
+},
+{
+    title:"LDR ทำให้เรากล้าที่จะเดินทางไกล",
+    caption:"ชาบูอุ้ดอร่อยย คิดถึง"
+},
+];
+
+let index = 0;
+
+function file(i) {
+
+    return "memory/" + String(i + 1).padStart(2, "0") + ".jpg";
+
+}
+
+function render() {
+
+    photo.src = file(index);
+
+    title.textContent = memories[index].title;
+
+    caption.textContent = memories[index].caption;
+
+    count.textContent = `${index + 1} / ${totalImages}`;
+
+}
+
+function next() {
+
+    index = (index + 1) % totalImages;
+
+    render();
+
+}
+
+function prev() {
+
+    index = (index - 1 + totalImages) % totalImages;
+
+    render();
+
+}
+
+render();
+
+</script>
+
+</body>
+
+</html>

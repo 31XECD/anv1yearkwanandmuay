@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:"Itim",cursive;
+background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+position:relative;
+}
+.blur,.blur2{position:absolute;border-radius:50%;filter:blur(180px);opacity:.22}
+.blur{width:520px;height:520px;background:#A78BFA;left:-140px;top:-140px}
+.blur2{width:480px;height:480px;background:#C4B5FD;right:-140px;bottom:-140px}
+.card{
+position:relative;
+z-index:2;
+width:min(92vw,760px);
+padding:40px;
+background:rgba(255,255,255,.55);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.75);
+border-radius:32px;
+box-shadow:0 20px 60px rgba(98,84,220,.15);
+animation:fade .8s ease;
+}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+h1{text-align:center;color:#5E67D9;font-size:44px}
+.sub{text-align:center;color:#8B86A8;font-size:22px;margin:10px 0 34px}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+}
+.menu{
+display:flex;
+align-items:center;
+gap:16px;
+padding:18px;
+border-radius:22px;
+background:rgba(255,255,255,.75);
+text-decoration:none;
+color:#5E67D9;
+transition:.25s;
+box-shadow:0 10px 25px rgba(100,80,220,.08);
+}
+.menu:hover{
+transform:translateY(-4px) scale(1.02);
+background:#fff;
+}
+.icon{font-size:36px;width:46px;text-align:center}
+.title{font-size:24px}
+.desc{font-size:15px;color:#8A86A8;margin-top:3px}
+.footer{
+margin-top:30px;
+text-align:center;
+color:#9B96B8;
+font-size:18px;
+}
+
+/* Floating Emoji Background */
+.float-emoji{
+position:fixed;
+bottom:-40px;
+pointer-events:none;
+z-index:1;
+animation:floatUp linear forwards;
+opacity:.9;
+}
+@keyframes floatUp{
+0%{transform:translateY(0) rotate(0deg);opacity:0}
+10%{opacity:1}
+100%{transform:translateY(-120vh) rotate(360deg);opacity:0}
+}
+
+
+#title{
+opacity:0;
+transform:scale(.5);
+animation:popTitle 1s cubic-bezier(.18,1.4,.45,1) forwards,
+glow 2s ease-in-out 1.2s infinite alternate;
+color:#5E67D9;
+}
+#title span{
+display:block;
+font-size:.55em;
+margin-top:8px;
+color:#8B7DFF;
+}
+@keyframes popTitle{
+0%{opacity:0;transform:scale(.5) translateY(30px)}
+60%{opacity:1;transform:scale(1.12)}
+80%{transform:scale(.96)}
+100%{opacity:1;transform:scale(1)}
+}
+@keyframes glow{
+from{text-shadow:none}
+to{text-shadow:0 0 10px rgba(255,255,255,.9),0 0 24px rgba(167,139,250,.55)}
+}
+
+</style>
+</head>
+<body>
+
+<div class="blur"></div>
+<div class="blur2"></div>
+
+<div class="card">
+
+<h1 id="title">Happy Anniversary 1 Year</span></h1>
+<div class="sub">Everything here is made with love, just for you. 🤍</div>
+
+<div class="grid">
+
+<a class="menu" href="love_letter.html">
+<div class="icon">💌</div>
+<div>
+<div class="title">Letter to you</div>
+<div class="desc">เธอมานี่ พี่จะบอกอะไรให้ 🤭</div>
+</div>
+</a>
+
+<a class="menu" href="together.html">
+<div class="icon">⏳</div>
+<div>
+<div class="title">Time of Us</div>
+<div class="desc">จากวันแรก จนถึงวันนี้ ⏱ </div>
+</div>
+</a>
+
+<a class="menu" href="memories.html">
+<div class="icon">📸</div>
+<div>
+<div class="title">Memories</div>
+<div class="desc">ความทรงจำของสองมุ 🎞</div>
+</div>
+</a>
+
+<a class="menu" href="puzzle.html">
+<div class="icon">🧩</div>
+<div>
+<div class="title">Piece by Piece</div>
+<div class="desc">a piece of us ♡ </div>
+</div>
+</a>
+
+<a class="menu" href="gift.html">
+<div class="icon">🎁</div>
+<div>
+<div class="title">Gift</div>
+<div class="desc">อะไรเอ่ย อยู่ในกล่องง ??</div>
+</div>
+</a>
+
+<a class="menu" href="message.html">
+<div class="icon">❤️</div>
+<div>
+<div class="title">Letter to me</div>
+<div class="desc">มีอะไรอยากบอกพี่มั้ยคะ ☺️</div>
+</div>
+</a>
+
+</div>
+
+<div class="footer">Made for muay juthathip only! | from P'Kwan your dog 🐶🤍</div>
+
+</div>
+
+
+<script>
+const emojis=["🤍","💜","✨","🌷","💌","🧩","🎁","☁️"];
+
+function createEmoji(){
+ const e=document.createElement("div");
+ e.className="float-emoji";
+ e.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+ e.style.left=Math.random()*100+"vw";
+ e.style.fontSize=(18+Math.random()*20)+"px";
+ e.style.animationDuration=(6+Math.random()*5)+"s";
+ document.body.appendChild(e);
+ setTimeout(()=>e.remove(),11000);
+}
+
+for(let i=0;i<25;i++){
+ setTimeout(createEmoji,i*250);
+}
+
+setInterval(createEmoji,700);
+</script>
+
+</body>
+</html>

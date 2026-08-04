@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สถานะของขวัญ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:"Itim",cursive;
+min-height:100vh;
+padding:40px 20px;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);
+overflow-y:auto;
+position:relative;
+}
+.blur,.blur2{position:fixed;border-radius:50%;filter:blur(180px);opacity:.22;pointer-events:none}
+.blur{width:520px;height:520px;background:#A78BFA;left:-150px;top:-150px}
+.blur2{width:480px;height:480px;background:#C4B5FD;right:-150px;bottom:-150px}
+.card{
+position:relative;
+z-index:2;
+width:100%;
+max-width:640px;
+background:rgba(255,255,255,.6);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.7);
+border-radius:28px;
+padding:32px 28px;
+box-shadow:0 20px 60px rgba(98,84,220,.15);
+}
+h1{text-align:center;color:#5E67D9;font-size:38px}
+.sub{text-align:center;color:#8B86A8;font-size:19px;line-height:1.6;margin:10px 0 28px}
+.track{display:flex;gap:16px;position:relative;padding-bottom:22px}
+.track:not(:last-of-type)::before{
+content:"";
+position:absolute;
+left:15px;
+top:34px;
+bottom:0;
+width:3px;
+background:#DDD5FF;
+}
+.dot{
+width:32px;height:32px;border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+background:#DDD5FF;color:#6B5CF5;flex-shrink:0}
+.done .dot{background:#CBBEFF}
+.active .dot{
+background:#6B5CF5;color:#fff;
+box-shadow:0 0 0 8px rgba(107,92,245,.15);
+animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.info h3{font-size:23px;color:#5E67D9;margin-bottom:4px}
+.info p{font-size:17px;color:#7B77A0;line-height:1.7}
+.note{
+margin-top:18px;
+padding:20px;
+border-radius:18px;
+background:#fff;
+text-align:center;
+color:#6F6A90;
+font-size:16px;
+line-height:1.8}
+.badge{
+display:inline-block;
+margin-top:16px;
+padding:10px 18px;
+background:#F6B5CC;
+border-radius:999px;
+color:#5E67D9;
+font-size:17px}
+@media (max-width:480px){
+body{padding:24px 14px}
+.card{padding:24px 18px}
+h1{font-size:32px}
+.info h3{font-size:20px}
+.info p,.note{font-size:16px}
+.sub{font-size:17px}
+}
+
+.back-btn{
+
+display:inline-flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin:24px auto 0;
+
+padding:14px 28px;
+
+background:#8B7DFF;
+
+color:#fff;
+
+text-decoration:none;
+
+border-radius:999px;
+
+font-size:22px;
+
+transition:.25s;
+
+box-shadow:0 10px 24px rgba(107,92,245,.2);
+
+}
+
+.back-btn:hover{
+
+transform:translateY(-2px);
+
+background:#7568F2;
+
+box-shadow:0 14px 28px rgba(107,92,245,.3);
+
+}
+</style>
+</head>
+<body>
+<div class="blur"></div>
+<div class="blur2"></div>
+
+<div class="card">
+<h1>🎁 Gift Status</h1>
+<div class="sub">something is sending to you... </div>
+
+<div class="track done">
+<div class="dot">✓</div>
+<div class="info">
+<h3>Order Confirmed</h3>
+<p>พี่มีของขวัญชิ้นนึงจะให้มุด้วย จิ้มแล้วเรียบร้อย 🌷</p>
+</div>
+</div>
+
+<div class="track active">
+<div class="dot">♥</div>
+<div class="info">
+<h3>
+Waiting for Pre-order</h3>
+<p>แต่ตอนนี้ของหมดอะมุ พี่กำลังรอพรีอยู่แฟนรอก่อนน้า 🥺🤍</p>
+</div>
+</div>
+
+<div class="track">
+<div class="dot">📦</div>
+<div class="info">
+<h3>Preparing to Ship</h3>
+<p>ถ้าของมาแล้ว เตรียมบินไปหาแฟนเลอ ✨</p>
+</div>
+</div>
+
+<div class="track">
+<div class="dot">🏡</div>
+<div class="info">
+<h3>Delivered to You</h3>
+<p>ใช้เวลารอนานมาก แต่หวังว่าแฟนจะชอบน้า 🤍</p>
+</div>
+</div>
+
+<div class="note">
+หนึ่งสิ่งที่เป็นของขวัญที่ดีมากก่อนวันครบรอบ <br>
+<b>คือ 10 วันที่เราได้ใช้เวลาอยู่ด้วยกัน 🎁</b><br>
+เป็นอะไรที่มีความสุข และแฮปปี้ที่สุดเลย 
+ดีใจที่ได้ใช้เวลาด้วยกันนะคะ รักแฟน🤍
+<a href="menu.html" class="back-btn">
+    ← กลับไปหน้าเมนู
+</a>
+</div>
+
+
+
+</div>
+</body>
+</html>

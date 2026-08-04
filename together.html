@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Together</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:"Itim",cursive;
+
+            background:linear-gradient(
+                135deg,
+                #F7F5FF,
+                #EEE9FF,
+                #F8F6FF,
+                #E7E1FF
+            );
+
+            height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            overflow:hidden;
+
+            position:relative;
+
+        }
+
+        .blur,
+        .blur2{
+
+            position:absolute;
+
+            border-radius:50%;
+
+            filter:blur(180px);
+
+            opacity:.22;
+
+        }
+
+        .blur{
+
+            width:520px;
+            height:520px;
+
+            background:#A78BFA;
+
+            left:-150px;
+            top:-150px;
+
+        }
+
+        .blur2{
+
+            width:480px;
+            height:480px;
+
+            background:#C4B5FD;
+
+            right:-150px;
+            bottom:-150px;
+
+        }
+
+        .container{
+
+            position:relative;
+
+            z-index:2;
+
+            text-align:center;
+
+            animation:fade .8s ease;
+
+        }
+
+        @keyframes fade{
+
+            from{
+
+                opacity:0;
+                transform:translateY(20px);
+
+            }
+
+            to{
+
+                opacity:1;
+                transform:none;
+
+            }
+
+        }
+
+        .heart{
+
+            font-size:42px;
+
+        }
+
+        .title{
+
+            font-size:36px;
+
+            color:#5E67D9;
+
+            margin:10px 0 40px;
+
+        }
+
+        .days{
+
+            font-size:120px;
+
+            color:#6B5CF5;
+
+            line-height:1;
+
+        }
+
+        .days-label{
+
+            font-size:24px;
+
+            color:#8A86A8;
+
+            letter-spacing:4px;
+
+            text-transform:uppercase;
+
+        }
+
+        .clock{
+
+            margin-top:40px;
+
+            font-size:64px;
+
+            color:#5E67D9;
+
+            font-variant-numeric:tabular-nums;
+
+        }
+
+        .labels{
+
+            display:flex;
+
+            justify-content:center;
+
+            gap:54px;
+
+            color:#8A86A8;
+
+            font-size:16px;
+
+            margin-top:10px;
+
+            text-transform:uppercase;
+
+        }
+
+        .since{
+
+            margin-top:36px;
+
+            color:#5E67D9;
+
+            font-size:40px;
+
+        }
+
+        .quote{
+
+            margin-top:18px;
+
+            color:#7B77A0;
+
+            font-size:22px;
+
+            line-height:1.6;
+
+        }
+
+        .next{
+display:block;
+width:max-content;
+margin:28px auto 0;
+padding:14px 34px;
+border-radius:999px;
+background:#F6B5CC;
+color:#5E67D9;
+text-decoration:none;
+font-size:22px;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <div class="blur"></div>
+
+    <div class="blur2"></div>
+
+    <div class="container">
+
+        <div class="heart">
+            🤍
+        </div>
+
+        <div class="title">
+            We've been together
+        </div>
+
+        <div id="days" class="days">
+            0
+        </div>
+
+        <div class="days-label">
+            Days
+        </div>
+
+        <div class="clock">
+
+            <span id="hours">00</span>
+
+            :
+
+            <span id="minutes">00</span>
+
+            :
+
+            <span id="seconds">00</span>
+
+        </div>
+
+        <div class="labels">
+
+            <span>Hours</span>
+
+            <span>Minutes</span>
+
+            <span>Seconds</span>
+
+        </div>
+
+        <div class="since">
+
+            Since 05 August 2025
+
+        </div>
+
+        <div class="quote">
+
+            ขอบคุณที่มีเธอ ในทุกช่วงวันเวลา วันพวกนั้นมีความหมายและมีความสุขมากๆเลย.
+
+        </div>
+<a href="menu.html" class="next">
+    ← กลับไปหน้าเมนู
+</a>
+    </div>
+
+    <script>
+
+        const s = new Date("2025-08-05T00:00:00");
+
+        function updateLoveTime(){
+
+            let diff = Date.now() - s.getTime();
+
+            const day = Math.floor(diff / 86400000);
+
+            diff %= 86400000;
+
+            const hour = Math.floor(diff / 3600000);
+
+            diff %= 3600000;
+
+            const minute = Math.floor(diff / 60000);
+
+            diff %= 60000;
+
+            const second = Math.floor(diff / 1000);
+
+            document.getElementById("days").textContent = day;
+
+            document.getElementById("hours").textContent =
+                String(hour).padStart(2,"0");
+
+            document.getElementById("minutes").textContent =
+                String(minute).padStart(2,"0");
+
+            document.getElementById("seconds").textContent =
+                String(second).padStart(2,"0");
+
+        }
+
+        updateLoveTime();
+
+        setInterval(updateLoveTime,1000);
+
+    </script>
+
+</body>
+
+</html>

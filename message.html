@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave Me a Message</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:"Itim",cursive;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);
+overflow:hidden;
+position:relative;
+}
+.blur,.blur2{position:absolute;border-radius:50%;filter:blur(180px);opacity:.22}
+.blur{width:520px;height:520px;background:#A78BFA;left:-140px;top:-140px}
+.blur2{width:480px;height:480px;background:#C4B5FD;right:-140px;bottom:-140px}
+.card{
+position:relative;z-index:2;
+width:min(92vw,560px);
+padding:40px;
+background:rgba(255,255,255,.58);
+backdrop-filter:blur(18px);
+border-radius:30px;
+border:1px solid rgba(255,255,255,.7);
+box-shadow:0 20px 60px rgba(98,84,220,.15);
+animation:fade .7s ease;
+}
+@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+h1{text-align:center;color:#5E67D9;font-size:42px}
+.sub{text-align:center;color:#8A86A8;font-size:20px;margin:10px 0 28px;line-height:1.5}
+label{display:block;margin:16px 0 8px;color:#6E68A0;font-size:20px}
+input,textarea{
+width:100%;
+border:none;
+outline:none;
+padding:16px;
+border-radius:18px;
+font-family:"Itim",cursive;
+font-size:20px;
+background:#fff;
+box-shadow:inset 0 0 0 2px #E5DEFF;
+}
+textarea{min-height:170px;resize:vertical}
+button{
+width:100%;
+margin-top:24px;
+padding:16px;
+border:none;
+border-radius:999px;
+background:#F6B5CC;
+color:#5E67D9;
+font-family:"Itim",cursive;
+font-size:24px;
+cursor:pointer;
+transition:.25s;
+}
+button:hover{transform:translateY(-2px)}
+#success{
+display:none;
+text-align:center;
+padding:30px 10px;
+}
+#success h2{color:#5E67D9;font-size:38px}
+#success p{margin-top:12px;color:#7B77A0;font-size:22px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="blur"></div><div class="blur2"></div>
+
+<div class="card">
+
+<div id="formBox">
+<h1>💌 มีอะไรอยากบอกพี่มั้ยคะ ?</h1>
+<div class="sub">มุพิมพ์ๆมาตรงนี้เลยค่ะ</div>
+
+<form id="msgForm">
+<label>ผู้ส่ง : </label>
+<input type="text" name="name" >
+
+<label>อยากบอกว่า : </label>
+<textarea name="message" ></textarea>
+
+<button type="submit" id="sendBtn">♡ Send ♡</button>
+</form>
+</div>
+
+<div id="success">
+<h2>ขอบคุณค่ะที่รัก 🤍</h2>
+<p>ส่งเรียบร้อยแนะ รออ่านน้า แอบเขิน แอบตื่นเต้น 🌷</p>
+</div>
+
+</div>
+
+<script>
+const form=document.getElementById("msgForm");
+const btn=document.getElementById("sendBtn");
+
+form.addEventListener("submit",async(e)=>{
+ e.preventDefault();
+ btn.disabled=true;
+ btn.textContent="Sending...";
+
+ const data=new FormData(form);
+
+ try{
+   const res=await fetch("https://formspree.io/f/xyeggddz",{
+      method:"POST",
+      body:data,
+      headers:{'Accept':'application/json'}
+   });
+
+   if(res.ok){
+      document.getElementById("formBox").style.display="none";
+      document.getElementById("success").style.display="block";
+   }else{
+      alert("ส่งข้อความไม่สำเร็จ ลองอีกครั้งนะ 🤍");
+      btn.disabled=false;
+      btn.textContent="♡ Send ♡";
+   }
+ }catch(err){
+    alert("ไม่สามารถเชื่อมต่อได้");
+    btn.disabled=false;
+    btn.textContent="♡ Send ♡";
+ }
+});
+</script>
+
+</body>
+</html>
