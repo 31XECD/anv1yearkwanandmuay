@@ -11,30 +11,63 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
+
 font-family:"Itim",cursive;
+
 min-height:100vh;
-padding:40px 20px;
+
+margin:0;
+
+padding:20px;
+
 display:flex;
+
 justify-content:center;
+
 align-items:flex-start;
-background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);
+
+background:linear-gradient(
+135deg,
+#F7F5FF,
+#EEE9FF,
+#F8F6FF,
+#E7E1FF
+);
+
+overflow-x:hidden;
+
 overflow-y:auto;
+
 position:relative;
+
 }
 .blur,.blur2{position:fixed;border-radius:50%;filter:blur(180px);opacity:.22;pointer-events:none}
 .blur{width:520px;height:520px;background:#A78BFA;left:-150px;top:-150px}
 .blur2{width:480px;height:480px;background:#C4B5FD;right:-150px;bottom:-150px}
 .card{
+
 position:relative;
+
 z-index:2;
+
 width:100%;
+
 max-width:640px;
+
+margin:20px auto;
+
 background:rgba(255,255,255,.6);
+
 backdrop-filter:blur(18px);
+
 border:1px solid rgba(255,255,255,.7);
+
 border-radius:28px;
+
 padding:32px 28px;
+
 box-shadow:0 20px 60px rgba(98,84,220,.15);
+
 }
 h1{text-align:center;color:#5E67D9;font-size:38px}
 .sub{text-align:center;color:#8B86A8;font-size:19px;line-height:1.6;margin:10px 0 28px}
@@ -77,13 +110,104 @@ background:#F6B5CC;
 border-radius:999px;
 color:#5E67D9;
 font-size:17px}
-@media (max-width:480px){
-body{padding:24px 14px}
-.card{padding:24px 18px}
-h1{font-size:32px}
-.info h3{font-size:20px}
-.info p,.note{font-size:16px}
-.sub{font-size:17px}
+@media (max-width:768px){
+
+body{
+
+padding:16px;
+
+}
+
+.card{
+
+padding:22px 18px;
+
+border-radius:22px;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+.sub{
+
+font-size:17px;
+
+}
+
+.track{
+
+gap:12px;
+
+}
+
+.dot{
+
+width:28px;
+
+height:28px;
+
+font-size:14px;
+
+}
+
+.info h3{
+
+font-size:19px;
+
+}
+
+.info p{
+
+font-size:16px;
+
+line-height:1.6;
+
+}
+
+.note{
+
+font-size:15px;
+
+padding:16px;
+
+}
+
+.back-btn{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+width:100%;
+
+max-width:260px;
+
+margin:24px auto 0;
+
+padding:14px 28px;
+
+background:#8B7DFF;
+
+color:#fff;
+
+text-decoration:none;
+
+border-radius:999px;
+
+font-size:22px;
+
+transition:.25s;
+
+box-shadow:0 10px 24px rgba(107,92,245,.2);
+
+}
+
 }
 
 .back-btn{
