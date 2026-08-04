@@ -23,42 +23,57 @@
             box-sizing:border-box;
         }
 
-        body{
+        html,
+body{
+    width:100%;
+    min-height:100%;
+}
 
-            font-family:"Itim",cursive;
+body{
 
-            background:linear-gradient(
-                135deg,
-                #F7F5FF,
-                #EEE9FF,
-                #F8F6FF,
-                #E7E1FF
-            );
+    margin:0;
 
-            height:100vh;
+    font-family:"Itim",cursive;
 
-            display:flex;
-            justify-content:center;
-            align-items:center;
+    background:linear-gradient(
+        135deg,
+        #F7F5FF,
+        #EEE9FF,
+        #F8F6FF,
+        #E7E1FF
+    );
 
-            overflow:hidden;
+    min-height:100vh;
 
-            position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
 
-        }
+    padding:20px;
 
-        .blur,
-        .blur2{
+    overflow-x:hidden;
+    overflow-y:auto;
 
-            position:absolute;
+    position:relative;
 
-            border-radius:50%;
+}
 
-            filter:blur(180px);
+       .blur,
+.blur2{
 
-            opacity:.22;
+    position:fixed;
 
-        }
+    border-radius:50%;
+
+    filter:blur(180px);
+
+    opacity:.22;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
 
         .blur{
 
@@ -86,15 +101,21 @@
 
         .container{
 
-            position:relative;
+    position:relative;
 
-            z-index:2;
+    z-index:2;
 
-            text-align:center;
+    width:100%;
 
-            animation:fade .8s ease;
+    max-width:760px;
 
-        }
+    margin:20px auto;
+
+    text-align:center;
+
+    animation:fade .8s ease;
+
+}
 
         @keyframes fade{
 
@@ -214,6 +235,84 @@ background:#F6B5CC;
 color:#5E67D9;
 text-decoration:none;
 font-size:22px;
+}
+
+        @media (max-width:768px){
+
+body{
+
+    padding:16px;
+
+}
+
+.title{
+
+    font-size:28px;
+
+    margin-bottom:28px;
+
+}
+
+.days{
+
+    font-size:80px;
+
+}
+
+.days-label{
+
+    font-size:18px;
+
+    letter-spacing:2px;
+
+}
+
+.clock{
+
+    font-size:40px;
+
+    margin-top:24px;
+
+}
+
+.labels{
+
+    gap:22px;
+
+    font-size:13px;
+
+    flex-wrap:wrap;
+
+}
+
+.since{
+
+    font-size:24px;
+
+    margin-top:24px;
+
+}
+
+.quote{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    padding:0 6px;
+
+}
+
+.next{
+
+    width:100%;
+
+    max-width:260px;
+
+    text-align:center;
+
+}
+
 }
     </style>
 
