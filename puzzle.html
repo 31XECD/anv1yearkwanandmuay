@@ -9,24 +9,131 @@
 <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Itim",cursive;height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);overflow:hidden;position:relative}
-.blur,.blur2{position:absolute;border-radius:50%;filter:blur(180px);opacity:.22}
+html,
+body{
+width:100%;
+min-height:100%;
+}
+
+body{
+
+margin:0;
+
+font-family:"Itim",cursive;
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-start;
+
+padding:20px;
+
+background:linear-gradient(
+135deg,
+#F7F5FF,
+#EEE9FF,
+#F8F6FF,
+#E7E1FF
+);
+
+overflow-x:hidden;
+overflow-y:auto;
+
+position:relative;
+
+}
+.blur,
+.blur2{
+
+position:fixed;
+
+border-radius:50%;
+
+filter:blur(180px);
+
+opacity:.22;
+
+pointer-events:none;
+
+z-index:0;
+
+}
 .blur{width:520px;height:520px;background:#A78BFA;left:-140px;top:-140px}
 .blur2{width:480px;height:480px;background:#C4B5FD;right:-140px;bottom:-140px}
-.card{position:relative;z-index:2;width:min(95vw,720px);padding:28px;background:rgba(255,255,255,.58);backdrop-filter:blur(18px);border-radius:28px;text-align:center;box-shadow:0 20px 60px rgba(100,80,220,.15)}
-h1{color:#5E67D9;font-size:42px}
+.card{
+
+position:relative;
+
+z-index:2;
+
+width:100%;
+
+max-width:720px;
+
+margin:20px auto;
+
+padding:28px;
+
+background:rgba(255,255,255,.58);
+
+backdrop-filter:blur(18px);
+
+border-radius:28px;
+
+text-align:center;
+
+box-shadow:0 20px 60px rgba(100,80,220,.15);
+
+}
+    h1{color:#5E67D9;font-size:42px}
 p{color:#7B77A0;margin:10px 0 22px;font-size:20px}
-#board{width:306px;height:306px;margin:0 auto;display:grid;grid-template-columns:repeat(3,102px);grid-template-rows:repeat(3,102px);gap:2px}
+#board{
+
+width:min(90vw,306px);
+
+aspect-ratio:1;
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+grid-template-rows:repeat(3,1fr);
+
+gap:2px;
+
+}
+
 .tile{
-    width:100px;
-    height:100px;
+
+    width:100%;
+    aspect-ratio:1;
+
     border-radius:10px;
     border:2px solid rgba(255,255,255,.8);
 
     background-image:url("https://img2.pic.in.th/puzzle.jpg");
+    background-size:300% 300%;
+    background-repeat:no-repeat;
 
-    background-size:300px 300px;
-    cursor:grab;
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.tile.selected{
+
+    border:4px solid #8B7DFF;
+
+    transform:scale(.96);
+
+    box-shadow:0 0 18px rgba(139,125,255,.45);
+
 }
 #message,#next,#menuBtn{display:none;animation:fade .5s ease}
 #message{margin-top:20px;color:#6B5CF5;font-size:28px}
@@ -35,6 +142,50 @@ p{color:#7B77A0;margin:10px 0 22px;font-size:20px}
 .btn{padding:13px 30px;background:#F6B5CC;color:#5E67D9;text-decoration:none;border-radius:999px;font-size:22px;transition:.25s}
 .btn:hover{transform:translateY(-2px);background:#F3A8C2}
 small{display:block;margin-top:18px;color:#8A86A8}
+
+@media (max-width:768px){
+
+body{
+
+padding:16px;
+
+}
+
+.card{
+
+padding:22px 18px;
+
+}
+
+h1{
+
+font-size:32px;
+
+}
+
+p{
+
+font-size:18px;
+
+}
+
+#message{
+
+font-size:22px;
+
+}
+
+.btn{
+
+width:100%;
+
+max-width:260px;
+
+font-size:20px;
+
+}
+
+}
 </style>
 </head>
 <body>
@@ -61,30 +212,101 @@ function shuffle(){
  while(order.every((v,i)=>v===i));
  render();
 }
+    function isSolvable(arr){
 
-function render(){
- board.innerHTML="";
- order.forEach((piece,index)=>{
-   const d=document.createElement("div");
-   d.className="tile";
-   d.draggable=true;
-   d.dataset.index=index;
-   const x=(piece%3)*-100;
-   const y=Math.floor(piece/3)*-100;
-   d.style.backgroundPosition=`${x}px ${y}px`;
-   d.addEventListener("dragstart",()=>dragIndex=index);
-   d.addEventListener("dragover",e=>e.preventDefault());
-   d.addEventListener("drop",()=>drop(index));
-   board.appendChild(d);
- });
+    let inv=0;
+
+    for(let i=0;i<arr.length;i++){
+
+        for(let j=i+1;j<arr.length;j++){
+
+            if(arr[i]>arr[j]) inv++;
+
+        }
+
+    }
+
+    return inv%2===0;
+
 }
 
-let dragIndex=null;
+    function shuffle(){
 
-function drop(target){
- [order[dragIndex],order[target]]=[order[target],order[dragIndex]];
- render();
- check();
+    do{
+
+        order.sort(()=>Math.random()-0.5);
+
+    }while(
+
+        order.every((v,i)=>v===i) ||
+
+        !isSolvable(order)
+
+    );
+
+    render();
+
+}
+
+let selected = null;
+
+function render(){
+
+    board.innerHTML="";
+
+    order.forEach((piece,index)=>{
+
+        const d=document.createElement("div");
+
+        d.className="tile";
+
+        if(selected===index){
+            d.classList.add("selected");
+        }
+
+        const x=(piece%3)*100/2;
+        const y=Math.floor(piece/3)*100/2;
+
+        d.style.backgroundPosition=`${x}% ${y}%`;
+
+        d.addEventListener("click",()=>selectTile(index));
+
+        board.appendChild(d);
+
+    });
+
+}
+
+    function selectTile(index){
+
+    if(selected===null){
+
+        selected=index;
+
+        render();
+
+        return;
+
+    }
+
+    if(selected===index){
+
+        selected=null;
+
+        render();
+
+        return;
+
+    }
+
+    [order[selected],order[index]]=[order[index],order[selected]];
+
+    selected=null;
+
+    render();
+
+    check();
+
 }
 
 function check(){
