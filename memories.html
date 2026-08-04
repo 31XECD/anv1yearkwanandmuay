@@ -19,31 +19,48 @@
             box-sizing: border-box;
         }
 
-        body {
+      html,
+body{
+width:100%;
+min-height:100%;
+}
 
-            font-family: "Itim", cursive;
+body{
 
-            background: linear-gradient(
-                135deg,
-                #F7F5FF,
-                #EEE9FF,
-                #F8F6FF,
-                #E7E1FF
-            );
+margin:0;
 
-            min-height: 100vh;
+font-family:"Itim",cursive;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+background:linear-gradient(
+135deg,
+#F7F5FF,
+#EEE9FF,
+#F8F6FF,
+#E7E1FF
+);
 
-            padding: 24px;
+min-height:100vh;
 
-        }
+display:flex;
+
+justify-content:center;
+
+align-items:flex-start;
+
+padding:20px;
+
+overflow-x:hidden;
+overflow-y:auto;
+
+}
 
         .card {
 
-            width: min(92vw, 760px);
+            width:100%;
+
+max-width:760px;
+
+margin:20px auto;
 
             background: rgba(255,255,255,.6);
 
@@ -177,6 +194,85 @@
 
         }
 
+        @media (max-width:768px){
+
+body{
+
+padding:16px;
+
+}
+
+.card{
+
+padding:22px 18px;
+
+border-radius:22px;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+.sub{
+
+font-size:17px;
+
+}
+
+.photo{
+
+border-radius:16px;
+
+}
+
+h2{
+
+font-size:24px;
+
+}
+
+p{
+
+font-size:16px;
+
+line-height:1.6;
+
+}
+
+.nav{
+
+gap:12px;
+
+}
+
+button{
+
+flex:1;
+
+padding:12px;
+
+font-size:18px;
+
+}
+
+.back{
+
+display:block;
+
+width:100%;
+
+max-width:260px;
+
+margin:22px auto 0;
+
+text-align:center;
+
+}
+
+}
     </style>
 
 </head>
