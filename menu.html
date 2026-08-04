@@ -9,17 +9,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html,
 body{
-font-family:"Itim",cursive;
-background:linear-gradient(135deg,#F7F5FF,#EEE9FF,#F8F6FF,#E7E1FF);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-position:relative;
+width:100%;
+min-height:100%;
 }
-.blur,.blur2{position:absolute;border-radius:50%;filter:blur(180px);opacity:.22}
+
+body{
+
+margin:0;
+
+font-family:"Itim",cursive;
+
+background:linear-gradient(
+135deg,
+#F7F5FF,
+#EEE9FF,
+#F8F6FF,
+#E7E1FF
+);
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-start;
+
+padding:20px;
+
+overflow-x:hidden;
+
+overflow-y:auto;
+
+position:relative;
+
+}
+.blur,
+.blur2{
+
+position:fixed;
+
+border-radius:50%;
+
+filter:blur(180px);
+
+opacity:.22;
+
+pointer-events:none;
+
+z-index:0;
+
+}
 .blur{width:520px;height:520px;background:#A78BFA;left:-140px;top:-140px}
 .blur2{width:480px;height:480px;background:#C4B5FD;right:-140px;bottom:-140px}
 .card{
@@ -33,6 +75,8 @@ border:1px solid rgba(255,255,255,.75);
 border-radius:32px;
 box-shadow:0 20px 60px rgba(98,84,220,.15);
 animation:fade .8s ease;
+ 
+margin:20px auto;
 }
 @keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 h1{text-align:center;color:#5E67D9;font-size:44px}
@@ -107,7 +151,85 @@ color:#8B7DFF;
 from{text-shadow:none}
 to{text-shadow:0 0 10px rgba(255,255,255,.9),0 0 24px rgba(167,139,250,.55)}
 }
+@media (max-width:768px){
 
+body{
+
+padding:16px;
+
+}
+
+.card{
+
+padding:24px 18px;
+
+border-radius:22px;
+
+}
+
+h1{
+
+font-size:34px;
+
+}
+
+#title span{
+
+font-size:22px;
+
+}
+
+.sub{
+
+font-size:18px;
+
+margin-bottom:24px;
+
+}
+
+.grid{
+
+grid-template-columns:1fr;
+
+gap:14px;
+
+}
+
+.menu{
+
+padding:16px;
+
+}
+
+.icon{
+
+font-size:32px;
+
+width:40px;
+
+}
+
+.title{
+
+font-size:22px;
+
+}
+
+.desc{
+
+font-size:15px;
+
+}
+
+.footer{
+
+font-size:16px;
+
+line-height:1.6;
+
+}
+
+}
 </style>
 </head>
 <body>
@@ -117,7 +239,7 @@ to{text-shadow:0 0 10px rgba(255,255,255,.9),0 0 24px rgba(167,139,250,.55)}
 
 <div class="card">
 
-<h1 id="title">Happy Anniversary 1 Year</span></h1>
+<h1 id="title">Happy Anniversary 1 Year</h1>
 <div class="sub">Everything here is made with love, just for you. 🤍</div>
 
 <div class="grid">
